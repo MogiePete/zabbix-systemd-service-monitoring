@@ -1,0 +1,10 @@
+#Required for Zabbix to query services running under systemd
+Defaults:zabbix !requiretty
+
+#Uncomment for Enterprise Linux based hosts
+#Cmnd_Alias ZBX_SYSTEMD = /usr/bin/systemctl status *, /usr/bin/systemctl list-unit-files *
+
+#Uncomment for Ubuntu based hosts 
+#Cmnd_Alias ZBX_SYSTEMD = /bin/systemctl status *, /bin/systemctl list-unit-files *
+
+zabbix ALL=(ALL:ALL) NOPASSWD:ZBX_SYSTEMD
