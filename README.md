@@ -7,7 +7,6 @@ FEATURES
 * Discovery of systemd Services
 * Provides alerting when a service stops or restarts
 
-
 REQUIREMENTS
 ------------
 * RHEL/CentOS/Oracle EL
@@ -21,7 +20,6 @@ INSTALLATION
   * Link template to host
 * Agent
   * Copy __userparameter_systemd_services.conf__ to __/etc/zabbix/zabbix\_agentd.d/userparameter\_systemd\_services.conf__
-  * Copy __zbx\_systemd__ to /etc/sudoers.d/ and uncomment line for your Operating System
   * Restart zabbix_agent
 
 NOTES
