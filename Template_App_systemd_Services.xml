@@ -28,7 +28,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>system.uptime.systemd</key>
+                    <key>systemd.uptime</key>
                     <delay>10m</delay>
                     <history>1d</history>
                     <trends>1w</trends>
