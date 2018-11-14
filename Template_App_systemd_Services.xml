@@ -173,7 +173,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template App systemd Services:systemd.service.PID[{#SERVICE}].diff(0)}&lt;&gt;0 and {Template App systemd Services:systemd.uptime.last()}&gt;3m</expression>
+                            <expression>{Template App systemd Services:systemd.service.PID[{#SERVICE}].diff(0)}&lt;&gt;0 and {Template App systemd Services:systemd.uptime.last()}&gt;180</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{#SERVICE} has restarted</name>
