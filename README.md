@@ -19,6 +19,9 @@ INSTALLATION
   * Import template __Template_App_systemd_Services.xml__ file
   * Link template to host
 * Agent
+  * Place the following files inside /etc/zabbix/:
+  * service_discovery_blacklist
+  * service_restart_check.sh
   * Copy __userparameter_systemd_services.conf__ to __/etc/zabbix/zabbix\_agentd.d/userparameter\_systemd\_services.conf__
   * Restart zabbix_agent
 
@@ -26,6 +29,8 @@ NOTES
 ------------
 
 This assumes you have disabled all unnecessary services prior to enabling the template. Any service that is enabled and not running will result in an alert.
+
+If you cannot, use the service_discovery_blacklist to add services that you don’t want to monitor.
 
 Additionally this excludes getty and autovt which are not reported by systemctl with the tty and will result in an error.
 

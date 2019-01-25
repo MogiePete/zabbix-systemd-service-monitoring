@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>3.4</version>
-    <date>2018-07-20T14:31:02Z</date>
+    <version>4.0</version>
+    <date>2019-01-24T14:22:40Z</date>
     <groups>
         <group>
             <name>Templates/Applications</name>
@@ -9,9 +9,9 @@
     </groups>
     <templates>
         <template>
-            <template>Template App systemd Services</template>
-            <name>Template App systemd Services</name>
-            <description>Discovery enabled systemd services, checks status every 1m, and checks PID every 10m to determine if service has rebooted.</description>
+            <template>SystemD service monitoring template</template>
+            <name>SystemD service monitoring template</name>
+            <description>Discovery enabled systemd services, checks status every 1m, and checks systemd service active time to determine if service has restarted.</description>
             <groups>
                 <group>
                     <name>Templates/Applications</name>
@@ -58,6 +58,24 @@
                     <logtimefmt/>
                     <preprocessing/>
                     <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
                     <master_item/>
                 </item>
             </items>
@@ -68,7 +86,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>systemd.service.discovery</key>
-                    <delay>24h</delay>
+                    <delay>30s</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -95,14 +113,14 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>{#SERVICE} PID</name>
+                            <name>{#SERVICE} Restart</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>systemd.service.PID[{#SERVICE}]</key>
-                            <delay>10m</delay>
-                            <history>30d</history>
-                            <trends>365d</trends>
+                            <key>systemd.service.restart[{#SERVICE}]</key>
+                            <delay>5s</delay>
+                            <history>1d</history>
+                            <trends>1d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
@@ -124,13 +142,35 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications/>
+                            <applications>
+                                <application>
+                                    <name>systemd</name>
+                                </application>
+                            </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <preprocessing/>
                             <jmx_endpoint/>
+                            <timeout>3s</timeout>
+                            <url/>
+                            <query_fields/>
+                            <posts/>
+                            <status_codes>200</status_codes>
+                            <follow_redirects>1</follow_redirects>
+                            <post_type>0</post_type>
+                            <http_proxy/>
+                            <headers/>
+                            <retrieve_mode>0</retrieve_mode>
+                            <request_method>0</request_method>
+                            <output_format>0</output_format>
+                            <allow_traps>0</allow_traps>
+                            <ssl_cert_file/>
+                            <ssl_key_file/>
+                            <ssl_key_password/>
+                            <verify_peer>0</verify_peer>
+                            <verify_host>0</verify_host>
                             <application_prototypes/>
-                            <master_item_prototype/>
+                            <master_item/>
                         </item_prototype>
                         <item_prototype>
                             <name>{#SERVICE} Status</name>
@@ -139,8 +179,8 @@
                             <snmp_oid/>
                             <key>systemd.service.status[{#SERVICE}]</key>
                             <delay>1m</delay>
-                            <history>30d</history>
-                            <trends>365d</trends>
+                            <history>1d</history>
+                            <trends>1d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
@@ -162,37 +202,59 @@
                             <port/>
                             <description>Returns the status of the</description>
                             <inventory_link>0</inventory_link>
-                            <applications/>
+                            <applications>
+                                <application>
+                                    <name>systemd</name>
+                                </application>
+                            </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <preprocessing/>
                             <jmx_endpoint/>
+                            <timeout>3s</timeout>
+                            <url/>
+                            <query_fields/>
+                            <posts/>
+                            <status_codes>200</status_codes>
+                            <follow_redirects>1</follow_redirects>
+                            <post_type>0</post_type>
+                            <http_proxy/>
+                            <headers/>
+                            <retrieve_mode>0</retrieve_mode>
+                            <request_method>0</request_method>
+                            <output_format>0</output_format>
+                            <allow_traps>0</allow_traps>
+                            <ssl_cert_file/>
+                            <ssl_key_file/>
+                            <ssl_key_password/>
+                            <verify_peer>0</verify_peer>
+                            <verify_host>0</verify_host>
                             <application_prototypes/>
-                            <master_item_prototype/>
+                            <master_item/>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template App systemd Services:systemd.service.PID[{#SERVICE}].diff(0)}&lt;&gt;0 and {Template App systemd Services:systemd.uptime.last()}&gt;180</expression>
+                            <expression>{SystemD service monitoring template:systemd.service.restart[{#SERVICE}].last()}&gt;0 and {SystemD service monitoring template:systemd.uptime.last()}&gt;180</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
-                            <name>{#SERVICE} has restarted</name>
+                            <name>{#SERVICE} service has restarted</name>
                             <correlation_mode>0</correlation_mode>
                             <correlation_tag/>
                             <url/>
                             <status>0</status>
                             <priority>2</priority>
-                            <description>The Service has been restarted and is using a new PID</description>
+                            <description/>
                             <type>0</type>
-                            <manual_close>1</manual_close>
+                            <manual_close>0</manual_close>
                             <dependencies/>
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template App systemd Services:systemd.service.status[{#SERVICE}].last()}&lt;&gt;0</expression>
+                            <expression>{SystemD service monitoring template:systemd.service.status[{#SERVICE}].last()}&lt;&gt;0</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
-                            <name>{#SERVICE} not running</name>
+                            <name>{#SERVICE} service not running</name>
                             <correlation_mode>0</correlation_mode>
                             <correlation_tag/>
                             <url/>
@@ -208,6 +270,23 @@
                     <graph_prototypes/>
                     <host_prototypes/>
                     <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
                 </discovery_rule>
             </discovery_rules>
             <httptests/>
