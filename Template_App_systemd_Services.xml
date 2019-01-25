@@ -86,7 +86,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>systemd.service.discovery</key>
-                    <delay>30s</delay>
+                    <delay>24h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -118,7 +118,7 @@
                             <snmp_community/>
                             <snmp_oid/>
                             <key>systemd.service.restart[{#SERVICE}]</key>
-                            <delay>5s</delay>
+                            <delay>1m</delay>
                             <history>1d</history>
                             <trends>1d</trends>
                             <status>0</status>
