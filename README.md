@@ -21,6 +21,7 @@ INSTALLATION
 * Agent
   * Place the following files inside /etc/zabbix/:
   * service_discovery_blacklist
+  * Place the following file inside /usr/local/bin/:
   * service_restart_check.sh
   * Copy __userparameter_systemd_services.conf__ to __/etc/zabbix/zabbix\_agentd.d/userparameter\_systemd\_services.conf__
   * Restart zabbix_agent
