@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-01-24T14:22:40Z</date>
+    <date>2019-02-23T23:06:43Z</date>
     <groups>
         <group>
             <name>Templates/Applications</name>
@@ -22,63 +22,7 @@
                     <name>systemd</name>
                 </application>
             </applications>
-            <items>
-                <item>
-                    <name>System uptime</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>systemd.uptime</key>
-                    <delay>10m</delay>
-                    <history>1d</history>
-                    <trends>1w</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units>uptime</units>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications/>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <timeout>3s</timeout>
-                    <url/>
-                    <query_fields/>
-                    <posts/>
-                    <status_codes>200</status_codes>
-                    <follow_redirects>1</follow_redirects>
-                    <post_type>0</post_type>
-                    <http_proxy/>
-                    <headers/>
-                    <retrieve_mode>0</retrieve_mode>
-                    <request_method>0</request_method>
-                    <output_format>0</output_format>
-                    <allow_traps>0</allow_traps>
-                    <ssl_cert_file/>
-                    <ssl_key_file/>
-                    <ssl_key_password/>
-                    <verify_peer>0</verify_peer>
-                    <verify_host>0</verify_host>
-                    <master_item/>
-                </item>
-            </items>
+            <items/>
             <discovery_rules>
                 <discovery_rule>
                     <name>Service Discovery</name>
@@ -86,7 +30,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>systemd.service.discovery</key>
-                    <delay>24h</delay>
+                    <delay>5m</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -235,18 +179,18 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{SystemD service monitoring template:systemd.service.restart[{#SERVICE}].last()}&gt;0 and {SystemD service monitoring template:systemd.uptime.last()}&gt;180</expression>
+                            <expression>{SystemD service monitoring template:systemd.service.restart[{#SERVICE}].last()}&lt;&gt;0</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
-                            <name>{#SERVICE} service has restarted</name>
+                            <name>{#SERVICE} service has restart</name>
                             <correlation_mode>0</correlation_mode>
                             <correlation_tag/>
                             <url/>
                             <status>0</status>
                             <priority>2</priority>
-                            <description/>
+                            <description>Triggers an alert if a service has restarted</description>
                             <type>0</type>
-                            <manual_close>0</manual_close>
+                            <manual_close>1</manual_close>
                             <dependencies/>
                             <tags/>
                         </trigger_prototype>
