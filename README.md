@@ -52,5 +52,5 @@ To test that everything works use `zabbix_agentd -t` to query the statistics :
 # Discover systemd services
 zabbix_agentd -t "systemd.service.discovery"
 zabbix_agentd -t "systemd.service.status[sshd]"
-zabbix_agentd -t "systemd.service.PID[sshd]"
+zabbix_agentd -t "systemd.service.restart[sshd]"
 ```
