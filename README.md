@@ -4,7 +4,7 @@ systemd Service Monitoring template for Zabbix
 
 FEATURES
 --------
-* Discovery of systemd Services
+* Discovery of systemd Services based on whitelist or blacklist
 * Provides alerting when a service stops or restarts
 
 REQUIREMENTS
@@ -24,6 +24,7 @@ INSTALLATION
   * Place the following file inside /usr/local/bin/:
   * zbx\_service\_restart\_check.sh
   * zbx\_service\_discovery.sh
+  * Set executable permissions on both scripts
   * If running SELinux run restorecon on the two scripts in /usr/local/bin e.g. __restorecon -v /usr/local/bin/zbx*.sh__
   * Copy __userparameter\_systemd\_services.conf__ to __/etc/zabbix/zabbix\_agentd.d/userparameter\_systemd\_services.conf__
   * Restart zabbix_agent
