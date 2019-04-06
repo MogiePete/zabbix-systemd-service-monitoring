@@ -4,7 +4,8 @@ systemd Service Monitoring template for Zabbix
 
 FEATURES
 --------
-* Discovery of systemd Services based on whitelist or blacklist
+* Discovery of systemd Services
+  * Provides option of blacklisting or whitelisting services
 * Provides alerting when a service stops or restarts
 
 REQUIREMENTS
@@ -20,7 +21,7 @@ INSTALLATION
   * Link template to host
 * Agent
   * Place the following files inside /etc/zabbix/:
-  * service\_discovery\_blacklist
+  * service\_discovery\_blacklist or service\_discovery\_whitelist
   * Place the following file inside /usr/local/bin/:
   * zbx\_service\_restart\_check.sh
   * zbx\_service\_discovery.sh
@@ -39,11 +40,19 @@ INSTALLATION
 NOTES
 ------------
 
+Blacklist Option:
+
 This assumes you have disabled all unnecessary services prior to enabling the template. Any service that is enabled and not running will result in an alert.
 
-If you cannot, use the service_discovery_blacklist to add services that you don’t want to monitor.
+If you cannot, use the service\_discovery\_blacklist to add services that you don’t want to monitor.
 
-Additionally this excludes getty and autovt which are not reported by systemctl with the tty and will result in an error.
+Additionally, this excludes getty and autovt which are not reported by systemctl with the tty and will result in an error.
+
+Whitelist Option:
+
+I have added the whitelist option as a way allow users to select the services they wish to monitor.
+
+To do so modify the service\_discovery\_whitelist which is already populated with sshd|zabbix-agent.
 
 Testing
 -------
