@@ -1,7 +1,6 @@
 systemd Service Monitoring template for Zabbix
 ===========================================
 
-
 FEATURES
 --------
 * Discovery of systemd Services
@@ -38,7 +37,13 @@ INSTALLATION
   * If you add additional services you will need to repeat this process. Sorry
 
 NOTES
-------------
+-----
+
+The filter files can take extended regular expressions, one per line.
+
+If neither service\_discovery\_whitelist nor service\_discovery\_blacklist exist on the system, the default behavior is to monitor all services. In other words it is the equivalent of a blank blacklist and a non-existent whitelist.
+
+If both files exist, both will be used, with the whitelist filter being applied first. Their behavior is explained as follows.
 
 Blacklist Option:
 
