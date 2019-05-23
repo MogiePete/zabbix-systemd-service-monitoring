@@ -15,7 +15,7 @@ date_compare() {
 }
 
 time_compare() {
-  system_time=$(date | awk '{print$4}' | tr -d :| sed 's/^0*//')
+  system_time=$(date +%H%M%S)
   service_time=$(systemctl show "$service" --property=ActiveEnterTimestamp | awk '{print $3}' | tr -d : | sed 's/^0*//')
   diff=$(( ${system_time#0} - ${service_time#0} ))
 
