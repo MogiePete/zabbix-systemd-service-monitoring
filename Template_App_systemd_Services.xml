@@ -182,7 +182,7 @@
                             <expression>{SystemD service monitoring template:systemd.service.restart[{#SERVICE}].last()}&lt;&gt;0</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
-                            <name>{#SERVICE} service has restart</name>
+                            <name>{#SERVICE} service has restarted</name>
                             <correlation_mode>0</correlation_mode>
                             <correlation_tag/>
                             <url/>
