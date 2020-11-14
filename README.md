@@ -23,6 +23,7 @@ INSTALLATION
   * service\_discovery\_blacklist or service\_discovery\_whitelist
   * Place the following file inside /usr/local/bin/:
   * zbx\_service\_restart\_check.sh
+  * zbx\_service\_status\_check.sh
   * zbx\_service\_discovery.sh
   * Set executable permissions on both scripts
   * If running SELinux run restorecon on the two scripts in /usr/local/bin e.g. __restorecon -v /usr/local/bin/zbx*.sh__
@@ -58,6 +59,10 @@ Whitelist Option:
 I have added the whitelist option as a way allow users to select the services they wish to monitor.
 
 To do so modify the service\_discovery\_whitelist which is already populated with sshd|zabbix-agent.
+
+Instantiated service (service unit name with `@`):
+
+With systemd instantiated service unit (e.g. `foo@bar.service`), the LLD item and trigger name in Zabbix will be converted to `foo\_AT\_bar`, due to LLD item and trigger name in Zabbix can not contain special characters.
 
 Testing
 -------
