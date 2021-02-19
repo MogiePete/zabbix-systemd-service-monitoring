@@ -4,12 +4,11 @@ service="$1"
 now=$(date +%s)
 
 # Don't alert if the server has just been restarted
-uptime=$(date +%s -d "$(uptime --since)")
-if [[ $(( $now - $uptime)) -lt 180 ]]; then
-        echo 0
+uptime=$(date +%s -d "$(systemctl show --value -p ActiveEnterTimestamp sysinit.target)")
+if [[ $(( now - uptime)) -lt 180 ]]; then
+  echo 0
 else
-        service_start=$(systemctl show "$service" --property=ActiveEnterTimestamp | awk -F= '{print $2}')
-        service_start_as_epoch=$(date -d "$service_start" +%s)
-
-        [[ $(( $now - $service_start_as_epoch )) -lt 180 ]] && echo 1 || echo 0
+  service_start=$(systemctl show --value -p ActiveEnterTimestamp "$service")
+  service_start_as_epoch=$(date -d "$service_start" +%s)
+  [[ $(( now - service_start_as_epoch )) -lt 180 ]] && echo 1 || echo 0
 fi
