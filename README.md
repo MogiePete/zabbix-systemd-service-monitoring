@@ -18,7 +18,7 @@ INSTALLATION
 * Server
   * Import template __Template\_App\_systemd\_Services.xml__ file
   * Link template to host
-* Agent
+* Agent (manual)
   * Place the following files inside /etc/zabbix/:
   * service\_discovery\_blacklist or service\_discovery\_whitelist
   * Place the following file inside /usr/local/bin/:
@@ -28,6 +28,10 @@ INSTALLATION
   * If running SELinux run restorecon on the two scripts in /usr/local/bin e.g. __restorecon -v /usr/local/bin/zbx*.sh__
   * Copy __userparameter\_systemd\_services.conf__ to __/etc/zabbix/zabbix\_agentd.d/userparameter\_systemd\_services.conf__
   * Restart zabbix_agent
+* Agent (scripted)
+  * Run `./install_agent.sh` (requires sudo)
+  * Edit black/whitelist files as appropriate
+  * If necessary, configure for SELinux as above and below
 * SELinux
   * For system running SELinux you will need to create a custom policy module
   * Please follow the directions above to install the template on the server and copy the files to the agent and then allow the agent to attempt discovery. (This can be sped up by changing the discovery update interval to 5m from 24H)
