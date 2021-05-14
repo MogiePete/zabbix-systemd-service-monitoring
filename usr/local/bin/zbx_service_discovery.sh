@@ -1,6 +1,6 @@
 #!/bin/bash
 
-service_list=$(systemctl list-unit-files | grep -E '\.service\s+(generated|enabled)' | awk -F'.service ' '{print $1}')
+service_list=$(systemctl list-units -t service --no-pager --no-legend | awk -F'.service ' '{print $1}')
 
 [[ -r /etc/zabbix/service_discovery_whitelist ]] && {
     service_list=$(echo "$service_list" | grep -E -f /etc/zabbix/service_discovery_whitelist)
