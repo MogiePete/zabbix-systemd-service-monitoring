@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Template systemd service monitoring</template>
-            <name>Template systemd service monitoring</name>
+            <template>SystemD service monitoring template</template>
+            <name>SystemD service monitoring template</name>
             <description>Discovery enabled systemd services, checks status every 1m, and checks systemd service active time to determine if service has restarted.</description>
             <groups>
                 <group>
