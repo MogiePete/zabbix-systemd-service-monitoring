@@ -14,7 +14,6 @@ OS:
 
 * RHEL/CentOS/Oracle EL
 * Ubuntu 16.04/18.04
-* (systemd version 230+)
 
 Zabbix:
 
@@ -34,11 +33,13 @@ Installation
   * Place the following file inside `/usr/local/bin/`:
       * `zbx_service_restart_check.sh`
       * `zbx_service_discovery.sh`
+      * If you have an old systemd version (before 230), copy also the "_old" file
   * Set executable permissions on both scripts:
       * `chmod +x /usr/local/bin/zbx*.sh`
   * If running SELinux run restorecon on the two scripts in `/usr/local/bin` e.g.:
       * `restorecon -v /usr/local/bin/zbx*.sh`
   * Copy `userparameter_systemd_services.conf` to `/etc/zabbix/zabbix_agentd.d/userparameter_systemd_services.conf`
+  * If you have an old systemd version (before 230), copy the "_old" file instead, and maintain the above destination
   * Restart `zabbix_agent`
 * SELinux
   * For system running SELinux you will need to create a custom policy module
