@@ -24,8 +24,8 @@ Installation
 ------------
 
 * Server
-  * Import template `Template_App_systemd_Services_v4.xml` file if you have Zabbix 4
-  * Import template `Template_App_systemd_Services_v5.xml` file if you have Zabbix 5
+  * Import template `Template_systemd_Services_v4.xml` file if you have Zabbix 4
+  * Import template `Template_systemd_Services_v5.xml` file if you have Zabbix 5
   * Link template to host
 * Agent
   * Place the following files inside `/etc/zabbix/`:
@@ -33,6 +33,7 @@ Installation
   * Place the following file inside `/usr/local/bin/`:
       * `zbx_service_restart_check.sh`
       * `zbx_service_discovery.sh`
+      * If you have an old systemd version (before 230), adopt the file `_old` version instead, removing its `_old` suffix
   * Set executable permissions on both scripts:
       * `chmod +x /usr/local/bin/zbx*.sh`
   * If running SELinux run restorecon on the two scripts in `/usr/local/bin` e.g.:
@@ -81,6 +82,13 @@ zabbix_agentd -t "systemd.service.discovery"
 zabbix_agentd -t "systemd.service.status[sshd]"
 zabbix_agentd -t "systemd.service.restart[sshd]"
 ```
+
+The `status[SERVICENAME]` will return:
+
+* `[t|1]` if that service is running
+* `[t|0]` if that service is NOT running
+
+The `restart[SERVICENAME]` will return the most recent restart date.
 
 License
 -------

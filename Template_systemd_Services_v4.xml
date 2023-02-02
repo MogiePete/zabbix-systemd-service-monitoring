@@ -195,7 +195,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{SystemD service monitoring template:systemd.service.status[{#SERVICE}].last()}&lt;&gt;0</expression>
+                            <expression>{SystemD service monitoring template:systemd.service.status[{#SERVICE}].last()}=0</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{#SERVICE} service not running</name>
