@@ -3,8 +3,10 @@
 service="$1"
 now=$(date +%s)
 
+uptime_value=$(systemctl show --value -p ActiveEnterTimestamp sysinit.target)
+
 # Don't alert if the server has just been restarted
-uptime=$(date +%s -d "$(systemctl show --value -p ActiveEnterTimestamp sysinit.target)")
+uptime=$(date +%s -d "$uptime_value")
 if [[ $(( now - uptime)) -lt 180 ]]; then
         echo 0
 else
