@@ -14,6 +14,7 @@ OS:
 
 * RHEL/CentOS/Oracle EL
 * Ubuntu 16.04/18.04
+* (systemd version 230+)
 
 Zabbix:
 
@@ -81,6 +82,13 @@ zabbix_agentd -t "systemd.service.discovery"
 zabbix_agentd -t "systemd.service.status[sshd]"
 zabbix_agentd -t "systemd.service.restart[sshd]"
 ```
+
+The `status[SERVICENAME]` will return:
+
+* `[t|1]` if that service is running
+* `[t|0]` if that service is NOT running
+
+The `restart[SERVICENAME]` will return the most recent restart date.
 
 License
 -------
