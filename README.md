@@ -24,8 +24,8 @@ Installation
 ------------
 
 * Server
-  * Import template `Template_App_systemd_Services_v4.xml` file if you have Zabbix 4
-  * Import template `Template_App_systemd_Services_v5.xml` file if you have Zabbix 5
+  * Import template `Template_systemd_Services_v4.xml` file if you have Zabbix 4
+  * Import template `Template_systemd_Services_v5.xml` file if you have Zabbix 5
   * Link template to host
 * Agent
   * Place the following files inside `/etc/zabbix/`:
